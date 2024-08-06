@@ -1,10 +1,13 @@
-from django.shortcuts import redirect, render
-from .models import Empresas
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages import constants
+from django.shortcuts import redirect, render
+
+from .models import Empresas
 
 
 # Create your views here.
+@login_required(login_url="/usuarios/login/")
 def cadastrar_empresa(request):
     if request.method == "GET":
         return render(
